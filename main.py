@@ -2,6 +2,7 @@ from functools import lru_cache
 from functions import *
 
 
+@lru_cache
 def get_by_date(name=None, date=None, filename=None):
     res = []
     arr = []
@@ -84,5 +85,6 @@ def select_sorted(sort_columns=None,
 
 if __name__ == '__main__':
     # select_sorted(sort_columns=["high"], limit=30, group_by_name=False, order='desc', filename='dump.csv')
-    # select_sorted(sort_columns=['high'], order='asc', limit=10, filename='dump.csv')
-    get_by_date(date="2017-08-08", name="PCLN", filename='dump.csv')
+    select_sorted(sort_columns=['high'], order='asc', limit=10, filename='dump.csv')
+    # get_by_date(date="2017-08-08", name="PCLN", filename='dump.csv')
+

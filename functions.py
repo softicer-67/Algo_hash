@@ -2,24 +2,12 @@ import fileinput
 from functools import lru_cache
 
 
+@lru_cache
 def load_file():
-    with open('all_stocks_5yr.csv', 'r') as i:
-        file = [i.rstrip('\n').split(',') for i in i]
-
     res = []
-    for i in range(1, len(file)):
-        try:
-            res.append([
-                str(file[i][0]),
-                float(file[i][1]),
-                float(file[i][2]),
-                float(file[i][3]),
-                float(file[i][4]),
-                int(file[i][5]),
-                str(file[i][6])
-            ])
-        except ValueError:
-            return res
+    for line in fileinput.input(['all_stocks_5yr.csv']):
+        res.append(line.strip('\n'))
+    return res
 
 
 def filter_func(value: str, data):
